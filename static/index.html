@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shuru — your BMW robot</title>
+<link rel="stylesheet" href="/static/style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+</head>
+<body>
+
+<div class="racer-stripe"></div>
+
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="avatar-bot small" id="mascotSm">
+        <svg viewBox="0 0 120 120" class="bot-svg">
+          <defs>
+            <linearGradient id="shellSm" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="100%" stop-color="#aab6c4"/>
+            </linearGradient>
+            <linearGradient id="visorSm" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3f6d99"/>
+              <stop offset="100%" stop-color="#05090d"/>
+            </linearGradient>
+          </defs>
+          <circle cx="60" cy="62" r="38" fill="url(#shellSm)" stroke="#8a97a6" stroke-width="3"/>
+          <path d="M30 58 C30 38 43 26 60 26 C77 26 90 38 90 58
+                   C90 78 77 92 60 92 C43 92 30 78 30 58 Z" fill="url(#visorSm)"/>
+          <path d="M40 44 C47 36 55 32 64 32" stroke="#7fb2dd" stroke-width="4" fill="none" opacity=".65" stroke-linecap="round"/>
+          <rect x="32" y="56" width="56" height="10" rx="5" fill="#0066B1"/>
+          <circle cx="60" cy="18" r="7" fill="#ff3b5c"/>
+          <path d="M38 100 L82 100 L76 116 L44 116 Z" fill="#1b222b"/>
+          <circle cx="60" cy="106" r="6" fill="#4a9bdd"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>SHURU</h1>
+        <p id="status" class="status">Connecting…</p>
+      </div>
+      <div class="roundel" title="BMW">
+        <span class="r-quadrant q1"></span><span class="r-quadrant q2"></span>
+        <span class="r-quadrant q3"></span><span class="r-quadrant q4"></span>
+        <span class="r-letter">S</span>
+      </div>
+    </div>
+    <button id="newChat" class="ghost-btn">New chat</button>
+  </header>
+
+  <main id="messages" class="messages">
+    <div class="welcome">
+      <div class="hero">
+        <div class="scene-wrap">
+          <img src="/static/shuru.svg" alt="Shuru the robot with his black BMW" class="scene" />
+        </div>
+        <h2>Hi, I'm Shuru</h2>
+        <p class="hero-sub">Robot. Athlete. Black BMW owner. Completely gone for Gudda.</p>
+        <div class="badges">
+          <span class="badge">🏁 Athlete</span>
+          <span class="badge">🖤 Black BMW</span>
+          <span class="badge">💙 Gudda's</span>
+        </div>
+      </div>
+
+      <div class="suggestions">
+        <button class="chip" data-prompt="Who are you? Introduce yourself.">Who are you?</button>
+        <button class="chip" data-prompt="Who is Gudda and how do you feel about her?">Tell me about Gudda</button>
+        <button class="chip" data-prompt="What's your favourite car and why?">Favourite car?</button>
+        <button class="chip" data-prompt="Give me a workout plan to build muscle.">Give me a workout plan</button>
+        <button class="chip" data-prompt="Explain quantum computing in simple terms.">Explain quantum computing</button>
+        <button class="chip" data-prompt="Write a Python script that reverses a string.">Write a Python script</button>
+      </div>
+    </div>
+  </main>
+
+  <div id="preview" class="preview hidden">
+    <img id="previewImg" alt="Selected image preview" />
+    <button id="clearImage" class="remove" title="Remove image">&times;</button>
+  </div>
+
+  <footer class="composer">
+    <div id="recorder" class="recorder hidden">
+      <span class="dot"></span>
+      <span id="recTime">0:00</span>
+      <span class="rec-label">Recording… tap the mic to stop</span>
+      <button id="cancelRec" class="link-btn">Cancel</button>
+    </div>
+
+    <form id="form" class="input-row">
+      <label class="icon-btn" title="Attach an image">
+        <input type="file" id="imageInput" accept="image/*" hidden />
+        <svg viewBox="0 0 24 24"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      </label>
+
+      <button type="button" id="mic" class="icon-btn" title="Record a voice message">
+        <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg>
+      </button>
+
+      <textarea id="input" rows="1" placeholder="Ask Shuru anything…"></textarea>
+
+      <button type="submit" id="send" class="send-btn" title="Send">
+        <svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </form>
+    <p class="hint">Enter to send · Shift + Enter for a new line · Images up to 10 MB · Voice up to 25 MB</p>
+  </footer>
+
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

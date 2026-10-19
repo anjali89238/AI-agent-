@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 330" class="scene-svg" role="img" aria-label="Shuru the robot standing beside his black BMW">
+  <defs>
+    <linearGradient id="carPaint" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5b6472"/>
+      <stop offset="35%" stop-color="#22272f"/>
+      <stop offset="100%" stop-color="#05070a"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8fb6d8"/>
+      <stop offset="45%" stop-color="#2c3a4a"/>
+      <stop offset="100%" stop-color="#0d141c"/>
+    </linearGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8eef5"/>
+      <stop offset="55%" stop-color="#9aa7b5"/>
+      <stop offset="100%" stop-color="#5a6673"/>
+    </linearGradient>
+    <linearGradient id="suit" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#aab6c4"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4a9bdd"/>
+      <stop offset="100%" stop-color="#003f70"/>
+    </linearGradient>
+    <radialGradient id="rim" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#f2f6fa"/>
+      <stop offset="60%" stop-color="#9fadbb"/>
+      <stop offset="100%" stop-color="#39434f"/>
+    </radialGradient>
+    <radialGradient id="visorG" cx="50%" cy="20%" r="80%">
+      <stop offset="0%" stop-color="#3f6d99"/>
+      <stop offset="55%" stop-color="#14202c"/>
+      <stop offset="100%" stop-color="#05090d"/>
+    </radialGradient>
+    <linearGradient id="glowHead" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fff3c4"/>
+      <stop offset="55%" stop-color="#ffe680"/>
+      <stop offset="100%" stop-color="#ffb300"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#000" flood-opacity=".45"/>
+    </filter>
+    <filter id="blurG"><feGaussianBlur stdDeviation="7"/></filter>
+  </defs>
+
+  <!-- ground -->
+  <ellipse cx="250" cy="296" rx="215" ry="17" fill="#0a1520" opacity=".55" filter="url(#blurG)"/>
+
+  <!-- ============ CAR ============ -->
+  <g filter="url(#soft)">
+    <!-- rear wing -->
+    <rect x="296" y="86" width="92" height="11" rx="5" fill="url(#carPaint)" stroke="#0a0d11" stroke-width="2"/>
+    <rect x="306" y="97" width="9" height="26" fill="#1a1f26"/>
+    <rect x="366" y="97" width="9" height="26" fill="#1a1f26"/>
+
+    <!-- body -->
+    <path d="M42 232 L42 190 C42 176 54 166 74 162 L118 152
+             C146 116 186 100 232 102 L286 106
+             C330 112 366 136 392 168
+             C412 182 420 196 420 214 L420 232 Z"
+          fill="url(#carPaint)" stroke="#080b0f" stroke-width="2.5"/>
+
+    <!-- cabin glass -->
+    <path d="M126 150 C152 118 186 106 230 108 L272 111
+             C300 116 322 128 340 150 Z"
+          fill="url(#glass)" stroke="#0a0f15" stroke-width="2"/>
+    <path d="M232 109 L232 150" stroke="#0a0f15" stroke-width="2.5"/>
+
+    <!-- body highlight -->
+    <path d="M118 152 C150 140 200 134 260 134 L318 140"
+          fill="none" stroke="#7fa8cc" stroke-width="3" opacity=".45" stroke-linecap="round"/>
+
+    <!-- side skirt -->
+    <rect x="120" y="206" width="190" height="14" rx="7" fill="#0d1116" opacity=".9"/>
+
+    <!-- front grille (kidney) -->
+    <rect x="44" y="186" width="21" height="38" rx="6" fill="url(#chrome)"/>
+    <rect x="69" y="186" width="21" height="38" rx="6" fill="url(#chrome)"/>
+    <rect x="47" y="189" width="15" height="32" rx="4" fill="#14181e"/>
+    <rect x="72" y="189" width="15" height="32" rx="4" fill="#14181e"/>
+    <g stroke="#4c5763" stroke-width="1.2">
+      <path d="M47 195h15M47 201h15M47 207h15M47 213h15M72 195h15M72 201h15M72 207h15M72 213h15"/>
+    </g>
+
+    <!-- quad headlights -->
+    <g>
+      <circle cx="108" cy="176" r="12" fill="url(#glowHead)" stroke="#2b323b" stroke-width="2.5"/>
+      <circle cx="108" cy="176" r="5" fill="#fffbe8"/>
+      <circle cx="132" cy="173" r="12" fill="url(#glowHead)" stroke="#2b323b" stroke-width="2.5"/>
+      <circle cx="132" cy="173" r="5" fill="#fffbe8"/>
+      <circle cx="156" cy="171" r="12" fill="url(#glowHead)" stroke="#2b323b" stroke-width="2.5"/>
+      <circle cx="156" cy="171" r="5" fill="#fffbe8"/>
+      <circle cx="180" cy="170" r="12" fill="url(#glowHead)" stroke="#2b323b" stroke-width="2.5"/>
+      <circle cx="180" cy="170" r="5" fill="#fffbe8"/>
+    </g>
+    <rect x="98" y="158" width="92" height="32" rx="14" fill="#cfe4ff" opacity=".13"/>
+
+    <!-- lower intake -->
+    <rect x="96" y="204" width="120" height="16" rx="6" fill="#0b0f14"/>
+
+    <!-- BMW roundel on door -->
+    <g transform="translate(268,168)">
+      <circle r="18" fill="#0b1a2b"/>
+      <circle r="16" fill="#f5f8fb"/>
+      <path d="M0 0 L0 -16 A16 16 0 0 1 16 0 Z" fill="#0066B1"/>
+      <path d="M0 0 L16 0 A16 16 0 0 1 0 16 Z" fill="#0066B1"/>
+      <circle r="6" fill="#f5f8fb" stroke="#cfd8e2" stroke-width=".8"/>
+    </g>
+
+    <!-- door line + handle -->
+    <path d="M252 132 L252 208" stroke="#0a0f15" stroke-width="2" opacity=".8"/>
+    <rect x="262" y="150" width="20" height="5" rx="2.5" fill="url(#chrome)"/>
+
+    <!-- rear light -->
+    <rect x="404" y="186" width="14" height="20" rx="4" fill="#ff3b5c" opacity=".9"/>
+
+    <!-- exhaust -->
+    <rect x="386" y="220" width="30" height="7" rx="3.5" fill="url(#chrome)"/>
+
+    <!-- wheels -->
+    <g>
+      <circle cx="118" cy="228" r="36" fill="#0a0d11"/>
+      <circle cx="118" cy="228" r="27" fill="url(#rim)"/>
+      <circle cx="118" cy="228" r="10" fill="#1d232b"/>
+      <g stroke="#e8eef5" stroke-width="3.4" stroke-linecap="round">
+        <path d="M118 218v-9M118 238v9M108 228h-9M128 228h9"/>
+        <path d="M111 221l-6-6M125 235l6 6M125 221l6-6M111 235l-6 6"/>
+      </g>
+      <circle cx="118" cy="228" r="4" fill="#0066B1"/>
+    </g>
+    <g>
+      <circle cx="352" cy="228" r="36" fill="#0a0d11"/>
+      <circle cx="352" cy="228" r="27" fill="url(#rim)"/>
+      <circle cx="352" cy="228" r="10" fill="#1d232b"/>
+      <g stroke="#e8eef5" stroke-width="3.4" stroke-linecap="round">
+        <path d="M352 218v-9M352 238v9M342 228h-9M362 228h9"/>
+        <path d="M345 221l-6-6M359 235l6 6M359 221l6-6M345 235l-6 6"/>
+      </g>
+      <circle cx="352" cy="228" r="4" fill="#0066B1"/>
+    </g>
+  </g>
+
+  <!-- ============ ROBOT ============ -->
+  <!-- every part is built around one vertical axis: CX = 465 -->
+  <g filter="url(#soft)">
+
+    <!-- left arm, hanging at his side -->
+    <path d="M428 146 C417 153 412 167 413 183 L414 194 C415 201 423 202 425 195
+             L426 176 C427 166 431 158 437 153 Z"
+          fill="url(#suit)" stroke="#8a97a6" stroke-width="2"/>
+    <circle cx="418" cy="196" r="10" fill="#f2c14e" stroke="#a8842c" stroke-width="2"/>
+
+    <!-- right arm, raised fist -->
+    <path d="M502 146 C517 144 528 130 526 114 C525 104 516 100 510 106 L506 119
+             C511 123 513 128 510 134 C507 141 501 145 495 148 Z"
+          fill="url(#suit)" stroke="#8a97a6" stroke-width="2"/>
+    <circle cx="519" cy="107" r="11" fill="#f2c14e" stroke="#a8842c" stroke-width="2"/>
+
+    <!-- legs (432-461 and 469-498, centred on 465) -->
+    <path d="M432 198 L432 238 C432 248 438 253 446 253 L449 253 C457 253 461 247 461 238
+             L461 198 Z"
+          fill="url(#suit)" stroke="#8a97a6" stroke-width="2"/>
+    <path d="M469 198 L469 238 C469 247 473 253 481 253 L484 253 C492 253 498 248 498 238
+             L498 198 Z"
+          fill="url(#suit)" stroke="#8a97a6" stroke-width="2"/>
+    <path d="M432 224 L461 224 L461 232 L432 232 Z" fill="#0066B1" opacity=".55"/>
+    <path d="M469 224 L498 224 L498 232 L469 232 Z" fill="#0066B1" opacity=".55"/>
+
+    <!-- feet (429-465 and 465-501, centred on 465) -->
+    <rect x="429" y="251" width="36" height="14" rx="7" fill="#0066B1"/>
+    <rect x="465" y="251" width="36" height="14" rx="7" fill="#0066B1"/>
+
+    <!-- torso (415-515, centred on 465) -->
+    <path d="M465 124 C445 128 430 140 426 158 L424 190 C424 198 430 202 438 202
+             L492 202 C500 202 506 198 506 190 L504 158 C500 140 485 128 465 124 Z"
+          fill="url(#suit)" stroke="#8a97a6" stroke-width="2"/>
+
+    <!-- chest plate -->
+    <path d="M455 140 C445 145 440 154 439 164 L491 164 C490 154 485 145 475 140 Z" fill="#1b222b"/>
+    <circle cx="465" cy="152" r="7" fill="url(#blue)"/>
+    <rect x="440" y="170" width="50" height="7" rx="3.5" fill="#0066B1"/>
+    <rect x="448" y="182" width="34" height="6" rx="3" fill="#c3ccd6"/>
+
+    <!-- neck -->
+    <rect x="454" y="108" width="22" height="20" rx="7" fill="#9aa7b5"/>
+
+    <!-- helmet (centred on 465) -->
+    <circle cx="465" cy="78" r="34" fill="url(#suit)" stroke="#8a97a6" stroke-width="2.5"/>
+    <path d="M437 74 C437 56 449 46 465 46 C481 46 493 56 493 74
+             C493 90 481 102 465 102 C449 102 437 90 437 74 Z" fill="url(#visorG)"/>
+    <path d="M447 62 C453 55 459 52 467 52" stroke="#7fb2dd" stroke-width="3.5" fill="none"
+          opacity=".65" stroke-linecap="round"/>
+    <rect x="439" y="72" width="52" height="9" rx="4.5" fill="#0066B1" opacity=".9"/>
+    <circle cx="465" cy="44" r="6" fill="#ff3b5c"/>
+
+    <!-- shoulder pads (424 and 506, centred on 465) -->
+    <ellipse cx="424" cy="138" rx="14" ry="11" fill="#0066B1" stroke="#004a80" stroke-width="2"/>
+    <ellipse cx="506" cy="138" rx="14" ry="11" fill="#0066B1" stroke="#004a80" stroke-width="2"/>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#4a9bdd" opacity=".8">
+    <circle cx="128" cy="60" r="3"/>
+    <circle cx="252" cy="42" r="2.4"/>
+    <circle cx="540" cy="96" r="2.6"/>
+    <circle cx="60" cy="110" r="2.2"/>
+  </g>
+</svg>
