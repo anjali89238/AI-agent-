@@ -1,8 +1,6 @@
 import threading
 from collections import defaultdict, deque
 
-from google.genai import types
-
 MAX_TURNS_PER_SESSION = 20
 
 
@@ -19,17 +17,14 @@ class HistoryStore:
         with self._lock:
             self._sessions[session_id].append((role, text))
 
-    def get(self, session_id: str) -> list[types.Content]:
+    def get(self, session_id: str) -> list[dict[str, str]]:
         with self._lock:
             turns = list(self._sessions.get(session_id, ()))
 
-        contents: list[types.Content] = []
-        for role, text in turns:
-            genai_role = "user" if role == "user" else "model"
-            contents.append(
-                types.Content(role=genai_role, parts=[types.Part.from_text(text=text)])
-            )
-        return contents
+        return [
+            {"role": "user" if role == "user" else "assistant", "content": text}
+            for role, text in turns
+        ]
 
     def reset(self, session_id: str) -> None:
         with self._lock:

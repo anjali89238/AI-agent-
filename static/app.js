@@ -31,26 +31,7 @@ function scrollToEnd() {
   messages.scrollTop = messages.scrollHeight;
 }
 
-const BOT_AVATAR = `
-<svg viewBox="0 0 120 120" class="bot-svg">
-  <defs>
-    <linearGradient id="shellMsg" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#aab6c4"/>
-    </linearGradient>
-    <linearGradient id="visorMsg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#3f6d99"/><stop offset="100%" stop-color="#05090d"/>
-    </linearGradient>
-  </defs>
-  <circle cx="60" cy="58" r="34" fill="url(#shellMsg)" stroke="#8a97a6" stroke-width="3"/>
-  <path d="M32 54 C32 36 44 25 60 25 C76 25 88 36 88 54
-           C88 72 76 85 60 85 C44 85 32 72 32 54 Z" fill="url(#visorMsg)"/>
-  <path d="M41 41 C47 34 54 30 62 30" stroke="#7fb2dd" stroke-width="4" fill="none"
-        opacity=".65" stroke-linecap="round"/>
-  <rect x="34" y="52" width="52" height="9" rx="4.5" fill="#0066B1"/>
-  <circle cx="60" cy="16" r="6" fill="#ff3b5c"/>
-  <path d="M42 92 L78 92 L73 106 L47 106 Z" fill="#1b222b"/>
-  <circle cx="60" cy="98" r="5" fill="#4a9bdd"/>
-</svg>`;
+const BOT_AVATAR = '<span class="bot-emoji">🏠</span>';
 
 function formatTime(seconds) {
   const m = Math.floor(seconds / 60);
@@ -401,15 +382,15 @@ fetch("/api/health")
   .then((r) => r.json())
   .then((data) => {
     if (!data.api_key_configured) {
-      statusEl.textContent = "GOOGLE_API_KEY missing — see .env";
+      statusEl.textContent = "GROQ_API_KEY missing — see .env";
       statusEl.classList.add("err");
       return;
     }
     if (data.quota && data.quota.ok === false) {
-      statusEl.textContent = "Daily quota reached";
+      statusEl.textContent = "Groq unavailable";
       statusEl.classList.add("err");
       statusEl.title = data.quota.message || "";
-      showBanner(data.quota.message || "Shuru is out of quota right now.");
+      showBanner(data.quota.message || "EstateBot cannot reach Groq right now.");
       return;
     }
     statusEl.textContent = "Ready";

@@ -1,4 +1,4 @@
-﻿import logging
+import logging
 import time
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
@@ -6,15 +6,17 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from . import config
-from . import gemini
-from .gemini import UpstreamError, ask_about_audio, ask_about_image, ask_text
+from . import groq_client
+from .chatbot import RealEstateChatbot
+from .groq_client import UpstreamError
 from .history import HistoryStore
 from .schemas import ChatRequest
 
 logger = logging.getLogger("ai_agent")
 
-app = FastAPI(title="AI Agent", version="1.0.0")
+app = FastAPI(title="Real Estate AI Assistant", version="1.0.0")
 history = HistoryStore()
+chatbot = RealEstateChatbot(history)
 
 
 QUOTA_TTL_SECONDS = 300
@@ -30,13 +32,13 @@ def _quota_status() -> dict:
     if _quota_cache is not None and (now - _quota_checked_at) < QUOTA_TTL_SECONDS:
         return _quota_cache
 
-    if not config.GOOGLE_API_KEY:
+    if not config.GROQ_API_KEY:
         _quota_cache = {"ok": True, "reset_hint": "", "message": ""}
     else:
         try:
-            gemini.probe(config.TEXT_MODEL)
+            groq_client.probe(config.TEXT_MODEL)
             _quota_cache = {"ok": True, "reset_hint": "", "message": ""}
-        except gemini.UpstreamError as exc:
+        except UpstreamError as exc:
             _quota_cache = {"ok": False, "reset_hint": "", "message": str(exc)}
         except Exception:  # noqa: BLE001 - never break health
             _quota_cache = {"ok": True, "reset_hint": "", "message": ""}
@@ -49,9 +51,9 @@ def _quota_status() -> dict:
 def health() -> dict:
     return {
         "status": "ok",
-        "api_key_configured": bool(config.GOOGLE_API_KEY),
+        "api_key_configured": bool(config.GROQ_API_KEY),
         "text_model": config.TEXT_MODEL,
-        "name": "Shuru",
+        "name": config.BOT_NAME,
         "quota": _quota_status(),
     }
 
@@ -59,7 +61,7 @@ def health() -> dict:
 @app.post("/api/chat")
 async def chat(request: ChatRequest) -> dict:
     try:
-        answer = await ask_text(request.message, history.get(request.session_id))
+        answer = await chatbot.answer_text(request.message, request.session_id)
     except config.SettingsError as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
     except UpstreamError as exc:
@@ -67,10 +69,8 @@ async def chat(request: ChatRequest) -> dict:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
     except Exception as exc:  # noqa: BLE001 - surface upstream errors to the UI
         logger.exception("chat failed")
-        raise HTTPException(status_code=502, detail=f"Google AI request failed: {exc}") from exc
+        raise HTTPException(status_code=502, detail=f"Groq request failed: {exc}") from exc
 
-    history.append(request.session_id, "user", request.message)
-    history.append(request.session_id, "model", answer)
     return {"answer": answer, "session_id": request.session_id}
 
 
@@ -81,7 +81,7 @@ async def chat_image(
     image: UploadFile = File(...),
 ) -> dict:
     try:
-        answer = await ask_about_image(message, image, history.get(session_id))
+        answer = await chatbot.answer_image(message, image, session_id)
     except config.SettingsError as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
     except HTTPException:
@@ -95,9 +95,6 @@ async def chat_image(
     finally:
         await image.close()
 
-    prompt = message.strip() or "Describe this image in detail."
-    history.append(session_id, "user", f"[image] {prompt}")
-    history.append(session_id, "model", answer)
     return {"answer": answer, "session_id": session_id}
 
 
@@ -108,7 +105,7 @@ async def chat_audio(
     audio: UploadFile = File(...),
 ) -> dict:
     try:
-        transcript, answer = await ask_about_audio(message, audio, history.get(session_id))
+        transcript, answer = await chatbot.answer_audio(message, audio, session_id)
     except config.SettingsError as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
     except HTTPException:
@@ -122,14 +119,12 @@ async def chat_audio(
     finally:
         await audio.close()
 
-    history.append(session_id, "user", transcript)
-    history.append(session_id, "model", answer)
     return {"transcript": transcript, "answer": answer, "session_id": session_id}
 
 
 @app.post("/api/reset")
 async def reset(session_id: str = Form(default="default")) -> dict:
-    history.reset(session_id)
+    chatbot.reset(session_id)
     return {"status": "cleared", "session_id": session_id}
 
 
