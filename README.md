@@ -118,26 +118,15 @@ The API key must never be published on GitHub.
 
 1. Open your GitHub repository or download the ZIP.
 2. Follow the Setup section above.
-3. Each teacher creates their own free Groq key and puts it in their local
+3. creates their own free Groq key and puts it in their local
    `.env`.
 4. Open **http://127.0.0.1:8000**.
 
-If the repository is private, invite teachers under **Settings > Collaborators**.
-
-**Option 2 - you host it and share one URL (best for a demo):**
-
-Deploy the app to a Python host such as Render or Railway. Set `GROQ_API_KEY` as
-a secret environment variable in the host's dashboard and use this start command:
 
 ```bash
 uvicorn app.main:app --host 0.0.0.0 --port $PORT
 ```
 
-Then share the deployed URL with your teachers. The key stays on the server and
-is never sent to the browser.
-
-GitHub Pages cannot host this app because it only serves static files and cannot
-run FastAPI or Python.
 
 ## Project structure
 
