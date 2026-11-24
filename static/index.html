@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>EstateBot — Real Estate AI Assistant</title>
+<title>EstateBot — Database Real Estate Bot</title>
 <link rel="stylesheet" href="/static/style.css" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>" />
 </head>
@@ -13,7 +13,7 @@
 
   <header class="topbar">
     <div class="brand">
-      <div class="avatar-bot small" id="mascotSm">
+      <div class="avatar-bot small">
         <span class="bot-emoji">🏠</span>
       </div>
       <div class="brand-text">
@@ -29,55 +29,34 @@
       <div class="hero">
         <div class="hero-icon">🏠</div>
         <h2>Hi, I'm EstateBot</h2>
-        <p class="hero-sub">Ask about property prices, budgets and the buying process in any city or state.</p>
+        <p class="hero-sub">I answer real-estate questions from a local SQLite database.</p>
         <div class="badges">
-          <span class="badge">🏙️ Any city</span>
-          <span class="badge">💸 Price ranges</span>
+          <span class="badge">🏙️ City prices</span>
+          <span class="badge">💸 Rent ranges</span>
           <span class="badge">🧭 Buying roadmap</span>
         </div>
       </div>
 
       <div class="suggestions">
-        <button class="chip" data-prompt="What are the property prices in Mumbai for 1, 2 and 3 BHK?">Property prices in Mumbai</button>
-        <button class="chip" data-prompt="What budget do I need for a 2 BHK in Bengaluru?">2 BHK budget in Bengaluru</button>
-        <button class="chip" data-prompt="How do I buy a flat in Delhi? Give me the full roadmap.">How to buy in Delhi</button>
-        <button class="chip" data-prompt="What is the stamp duty and registration process in Maharashtra?">Stamp duty in Maharashtra</button>
-        <button class="chip" data-prompt="Is Hyderabad a good city for property investment?">Invest in Hyderabad</button>
-        <button class="chip" data-prompt="Give me the roadmap to buy land in Kerala and the documents I need.">Buy land in Kerala</button>
+        <button class="chip" data-prompt="What is the price of a 2 BHK in Mumbai?">2 BHK price in Mumbai</button>
+        <button class="chip" data-prompt="What is the rent in Bengaluru?">Rent in Bengaluru</button>
+        <button class="chip" data-prompt="How do I buy a flat in Delhi?">How to buy in Delhi</button>
+        <button class="chip" data-prompt="What is the stamp duty in Maharashtra?">Stamp duty in Maharashtra</button>
+        <button class="chip" data-prompt="What documents do I need to buy property?">Documents needed</button>
+        <button class="chip" data-prompt="What is RERA?">What is RERA?</button>
       </div>
     </div>
   </main>
 
-  <div id="preview" class="preview hidden">
-    <img id="previewImg" alt="Selected image preview" />
-    <button id="clearImage" class="remove" title="Remove image">&times;</button>
-  </div>
-
   <footer class="composer">
-    <div id="recorder" class="recorder hidden">
-      <span class="dot"></span>
-      <span id="recTime">0:00</span>
-      <span class="rec-label">Recording… tap the mic to stop</span>
-      <button id="cancelRec" class="link-btn">Cancel</button>
-    </div>
-
     <form id="form" class="input-row">
-      <label class="icon-btn" title="Attach an image">
-        <input type="file" id="imageInput" accept="image/*" hidden />
-        <svg viewBox="0 0 24 24"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      </label>
-
-      <button type="button" id="mic" class="icon-btn" title="Record a voice message">
-        <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg>
-      </button>
-
-      <textarea id="input" rows="1" placeholder="Ask about prices, budgets or buying property…"></textarea>
+      <textarea id="input" rows="1" placeholder="Ask about prices, rent, stamp duty or the buying process…"></textarea>
 
       <button type="submit" id="send" class="send-btn" title="Send">
         <svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
       </button>
     </form>
-    <p class="hint">Enter to send · Shift + Enter for a new line · Images up to 10 MB · Voice up to 25 MB</p>
+    <p class="hint">Enter to send · Shift + Enter for a new line</p>
   </footer>
 
 </div>

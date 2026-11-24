@@ -1,7 +1,6 @@
-# Environment secrets - never commit real keys
-.env
-.env.*
-!.env.example
+# SQLite database created at runtime
+estatebot.db
+*.db
 
 # Virtual environments
 venv/
@@ -21,3 +20,9 @@ Thumbs.db
 
 # Logs
 *.log
+*.log.err
+server.log*
+
+# Local env files (not used by this project, kept for safety)
+.env
+.env.*
